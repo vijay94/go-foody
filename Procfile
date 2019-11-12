@@ -1,1 +1,1 @@
-web: foody
+web: app
