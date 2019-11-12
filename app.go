@@ -18,15 +18,15 @@ func main() {
 	// router.HandleFunc("/rover", controller.GetRovers).Methods("GET")
 	// router.HandleFunc("/rover/operate", controller.OperateRovers).Methods("PUT")
 
-	// server := &http.Server{
-	// 	Handler:      router,
-	// 	Addr:         getPort(),
-	// 	WriteTimeout: 15 * time.Second,
-	// 	ReadTimeout:  15 * time.Second,
-	// }
-	err := http.ListenAndServe(GetPort(), nil)
+	server := &http.Server{
+		Handler:      router,
+		Addr:         getPort(),
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+	// err := http.ListenAndServe(getPort(), nil)
 
-	// log.Fatal(server.ListenAndServe())
+	log.Fatal(server.ListenAndServe())
 }
 
 func getPort() string {
