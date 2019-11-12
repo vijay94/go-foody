@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"log"
 	"github.com/gorilla/mux"
-	"time"
+	// "time"
 	controller "foody/controllers"
 	"os"
 	"fmt"
@@ -18,15 +18,15 @@ func main() {
 	// router.HandleFunc("/rover", controller.GetRovers).Methods("GET")
 	// router.HandleFunc("/rover/operate", controller.OperateRovers).Methods("PUT")
 
-	server := &http.Server{
-		Handler:      router,
-		Addr:         getPort(),
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
+	// server := &http.Server{
+	// 	Handler:      router,
+	// 	Addr:         getPort(),
+	// 	WriteTimeout: 15 * time.Second,
+	// 	ReadTimeout:  15 * time.Second,
+	// }
 	// err := http.ListenAndServe(getPort(), nil)
 
-	log.Fatal(server.ListenAndServe())
+	log.Fatal(http.ListenAndServe(getPort(), router))
 }
 
 func getPort() string {
