@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"time"
 	controller "foody/controllers"
+	"os"
 )
 
 func main() {
@@ -18,9 +19,20 @@ func main() {
 
 	server := &http.Server{
 		Handler:      router,
-		Addr:         "127.0.0.1:8000",
+		Addr:         getPort(),
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
 	log.Fatal(server.ListenAndServe())
+}
+
+func getPort() string {
+ 	var port = os.Getenv("PORT")
+ 	// Set a default port if there is nothing in the environment
+ 	if port == "" {
+		port = "4747"
+		fmt.Println("INFO: No PORT environment variable detected, defaulting to " + port)
+	}
+
+	return ":" + port
 }
